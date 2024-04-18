@@ -1,0 +1,45 @@
+.addProduit {
+  width: 600px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  label,
+  input,
+  button {
+    width: 100%;
+  }
+  input,
+  a {
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+  }
+  span {
+    display: block;
+    color: red;
+    font-size: 0.8em;
+  }
+  a,
+  button {
+    color: white;
+    background-color: var(--favoris);
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  input,
+  button {
+    outline: 0;
+    border: 1px solid var(--favoris);
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px;
+    margin: 5px 0;
+  }
+  label {
+    font-weight: bold;
+  }
+}
