@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
+<<<<<<< HEAD
 const Produit = require('./database/models/produit.model');
+=======
+const Produit = require('./database/models/Produit');
+>>>>>>> 5ebb8488724bc65c001a13cd51ff5cee60120279
 
 const connectionString = 'mongodb+srv://ivanjocc:FkE1wzTVmMv5ccWG@products.vleesjh.mongodb.net/?retryWrites=true&w=majority&appName=products';
 
@@ -25,10 +29,17 @@ async function insertData() {
 
   try {
     await Produit.insertMany(produits);
+<<<<<<< HEAD
     console.log('Productos insertados exitosamente');
     mongoose.disconnect();
   } catch (error) {
     console.error('Error al insertar productos', error);
+=======
+    console.log('Products inserted successfully');
+    mongoose.disconnect();
+  } catch (error) {
+    console.error('Error inserting products', error);
+>>>>>>> 5ebb8488724bc65c001a13cd51ff5cee60120279
     mongoose.disconnect();
   }
 }

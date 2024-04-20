@@ -1,14 +1,27 @@
-const Produit = require("../database/models/produit.model");
+const Produit = require('../database/models/Produit');
 
-exports.getProduits = () => {
-  return Produit.find().sort({ _id: -1 });
+exports.createProduit = async function(produitData) {
+  try {
+    const produit = new Produit(produitData);
+    await produit.save();
+    return produit;
+  } catch (error) {
+    throw error;
+  }
 };
 
-exports.createProduit = (unProduit) => {
-  const produit = new Produit(unProduit);
-  return produit.save();
+exports.getProduits = async function() {
+  try {
+    return await Produit.find();
+  } catch (error) {
+    throw error;
+  }
 };
 
-exports.deleteProduit = (produitId) => {
-  return Produit.findByIdAndDelete(produitId).exec();
+exports.deleteProduit = async function(id) {
+  try {
+    return await Produit.findByIdAndDelete(id);
+  } catch (error) {
+    throw error;
+  }
 };
