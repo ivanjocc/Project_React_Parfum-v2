@@ -21,6 +21,16 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
+app.get('/produits', async (req, res) => {
+  try {
+    const produits = await Produit.find();
+    res.json(produits);
+  } catch (error) {
+    res.status(500).send("Error retrieving products: " + error.message);
+  }
+});
+
+
 app.listen((PORT = 5000), () =>
   console.log(`Server is on http://localhost:${PORT}`)
 );

@@ -18,6 +18,7 @@ const Produit = ({ deleteProduit, data, saved }) => {
       <i
         onClick={() => deleteProduit(_id)}
         className={`${styles.x_delete} fa-solid delete fa-x`}
+        style={{ cursor: 'pointer' }}
       ></i>
       <div className="hover_opacity">
         <div>
