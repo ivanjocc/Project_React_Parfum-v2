@@ -1,26 +1,21 @@
-// Packages NPM
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-
-// Modules natifs
-const path = require("path");
-
-// Modules locaux
-require("./database");
-const routes = require("./routes");
-
+const mongoose = require('mongoose');
+const express = require('express');
+const produitController = require('./controllers/produit.controllers');
 const app = express();
 
-app.use(morgan("short"));
-app.use(cors());
-
-app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.use(routes);
+const connectionString = 'mongodb+srv://ivanjocc:FkE1wzTVmMv5ccWG@products.vleesjh.mongodb.net/?retryWrites=true&w=majority&appName=products';
 
-app.listen((PORT = 5000), () =>
-  console.log(`Server is on http://localhost:${PORT}`)
-);
+mongoose.connect(connectionString)
+  .then(() => console.log("Connected to MongoDB Atlas"))
+  .catch(e => console.error("Problem connecting to MongoDB Atlas:", e));
+
+app.get('/produits', produitController.listeProduits);
+app.post('/produits', produitController.createProduit);
+app.delete('/produits/:id', produitController.deleteProduit);
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

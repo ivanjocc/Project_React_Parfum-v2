@@ -1,35 +1,28 @@
-const {
-  getProduits,
-  createProduit,
-  deleteProduit,
-} = require("../queries/produit.queries");
+const produitQueries = require('../queries/produit.queries');
 
-exports.produitsListe = async (req, res, next) => {
+exports.listeProduits = async (req, res) => {
   try {
-    const produits = await getProduits();
-    res.send(produits);
+    const produits = await produitQueries.getProduits();
+    res.status(200).json(produits);
   } catch (error) {
-    next(error);
+    res.status(500).send(error.message);
   }
 };
 
-exports.produitCreate = async (req, res, next) => {
+exports.createProduit = async (req, res) => {
   try {
-    const body = req.body;
-    const data = await createProduit(body);
-    res.send(data);
+    const newProduit = await produitQueries.createProduit(req.body);
+    res.status(201).json(newProduit);
   } catch (error) {
-    next(error);
+    res.status(500).send(error.message);
   }
 };
 
-exports.produitDelete = async (req, res, next) => {
+exports.deleteProduit = async (req, res) => {
   try {
-    const produitId = req.params.produitId;
-    console.log(req);
-    const data = await deleteProduit(produitId);
-    res.send(data);
+    const produitDeleted = await produitQueries.deleteProduit(req.params.id);
+    res.status(200).json(produitDeleted);
   } catch (error) {
-    next(error);
+    res.status(500).send(error.message);
   }
 };
